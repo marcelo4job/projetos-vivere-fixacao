@@ -13,47 +13,52 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import br.edu.devmedia.dao.NotaDAO;
-import br.edu.devmedia.entidade.Nota;
+import br.edu.devmedia.dao.DisciplinaDAO;
+import br.edu.devmedia.entidade.Disciplina;
 
-@Path("/notas")
-public class NotasService {
+@Path("/disciplina")
+public class DisciplinasService {
 	
 	 private static final String CHARSET_UTF8 = ";charset=utf-8";
 	
-	 private NotaDAO notaDAO;
+	 private DisciplinaDAO disciplinaDAO;
 	 
 	 @PostConstruct
 	 private void init() {
 		 
-		 notaDAO = new NotaDAO();
+		 disciplinaDAO = new DisciplinaDAO();
 		 
 	 }
 	 
 	    @GET
 	    @Path("/list")
 	    @Produces(MediaType.APPLICATION_JSON + CHARSET_UTF8)
-	    public List<Nota> listarNotas() {
-	        List<Nota> lista = null;
+	    public List<Disciplina> listarDisciplinas() {
+	        List<Disciplina> lista = null;
 	        try {
-	            lista = notaDAO.listarNotas();
+	            lista = disciplinaDAO.listarDisciplinas();
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
 	        return lista;
 	    }
 	    
+	   
+	    
+	    
+	    
+	    
 	    @POST
 	    @Path("/add")
 	    @Consumes(MediaType.APPLICATION_JSON + CHARSET_UTF8)
 	    @Produces(MediaType.TEXT_PLAIN)
-	    public String addNota(Nota nota) {
+	    public String addDisciplina(Disciplina disciplina) {
 	        String msg = "";
 	 
-	        System.out.println(nota.getTitulo());
+	        System.out.println(disciplina.getNome());
 	 
 	        try {
-	            int idGerado = notaDAO.addNota(nota);
+	            int idGerado = disciplinaDAO.addDisciplina(disciplina);
 	 
 	            msg = " Nota adicionada com sucesso!";
 	        } catch (Exception e) {
@@ -64,36 +69,36 @@ public class NotasService {
 	        return msg;
 	    }
 	    
-     @GET
+        @GET
 	    @Path("/get/{id}")
 	    @Consumes(MediaType.TEXT_PLAIN)
 	    @Produces(MediaType.APPLICATION_JSON + CHARSET_UTF8)
-	    public Nota buscarPorId(@PathParam("id") int idNota) {
-	        Nota nota = null;
+	    public Disciplina buscarPorId(@PathParam("id") int idDisciplina) {
+	        Disciplina disciplina = null;
 	        try {
-	            nota = notaDAO.buscarNotaPorId(idNota);
+	            disciplina = disciplinaDAO.buscarPorId(idDisciplina);
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
 	 
-	        return nota;
+	        return disciplina;
 	    }
      
      @PUT
      @Path("/edit/{id}")
      @Consumes(MediaType.APPLICATION_JSON + CHARSET_UTF8)
      @Produces(MediaType.TEXT_PLAIN)
-     public String editarNota(Nota nota, @PathParam("id") int idNota) {
+     public String editarDisciplina(Disciplina disciplina, @PathParam("id") int idDisciplina) {
          String msg = "";
           
-         System.out.println(nota.getTitulo());
+         System.out.println(disciplina.getNome());
           
          try {
-             notaDAO.editarNota(nota, idNota);
+             disciplinaDAO.editarDisciplina(disciplina, idDisciplina);
               
-             msg = "Nota editada com sucesso!";
+             msg = "Disciplina editada com sucesso!";
          } catch (Exception e) {
-             msg = "Erro ao editar a nota!";
+             msg = "Erro ao editar a disciplina!";
              e.printStackTrace();
          }
           
@@ -104,15 +109,15 @@ public class NotasService {
      @Path("/delete/{id}")
      @Consumes(MediaType.APPLICATION_JSON)
      @Produces(MediaType.TEXT_PLAIN)
-     public String removerNota(@PathParam("id") int idNota) {
+     public String removerDisciplina(@PathParam("id") int idDisciplina) {
          String msg = "";
           
          try {
-             notaDAO.removerNota(idNota);
+             disciplinaDAO.removerDisciplina(idDisciplina);
               
-             msg = "Nota removida com sucesso!";
+             msg = "Disciplina removida com sucesso!";
          } catch (Exception e) {
-             msg = "Erro ao remover a nota!";
+             msg = "Não é possível remover uma disciplina com aluno vinculado!";
              e.printStackTrace();
          }
           
