@@ -2,20 +2,40 @@ package com.marcelo.pontocontrole.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Time;
 
 @Entity
 @Table(name = "TB_FUNCIONARIO")
-public class Funcionário implements Serializable {
+public class Employee implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String nome;
-    private String cargo;
-    private String setor;
-    private String matricula;
+    private String name;
+    private String office;
+    private String sector;
+    private String registration;
+    private Time timeDay;
+
+    public Time getTimeDay() {
+        return timeDay;
+    }
+
+    public void setTimeDay(Time timeDay) {
+        this.timeDay = timeDay;
+    }
+
+    public Time getTimeMonth() {
+        return TimeMonth;
+    }
+
+    public void setTimeMonth(Time timeMonth) {
+        TimeMonth = timeMonth;
+    }
+
+    private Time TimeMonth;
 
     public int getId() {
         return id;
@@ -25,35 +45,35 @@ public class Funcionário implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCargo() {
-        return cargo;
+    public String getOffice() {
+        return office;
     }
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
+    public void setOffice(String office) {
+        this.office = office;
     }
 
-    public String getSetor() {
-        return setor;
+    public String getSector() {
+        return sector;
     }
 
-    public void setSetor(String setor) {
-        this.setor = setor;
+    public void setSector(String sector) {
+        this.sector = sector;
     }
 
-    public String getMatricula() {
-        return matricula;
+    public String getRegistration() {
+        return registration;
     }
 
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
+    public void setRegistration(String registration) {
+        this.registration = registration;
     }
 }

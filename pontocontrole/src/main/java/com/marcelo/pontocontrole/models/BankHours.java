@@ -6,7 +6,7 @@ import java.sql.Time;
 
 @Entity
 @Table(name= "TB_BANCOHORAS")
-public class BancoHoras implements Serializable {
+public class BankHours implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -16,8 +16,24 @@ public class BancoHoras implements Serializable {
     private Time timeEntry;
     private Time timeExit;
     private String date;
-    private int idEmployee;
+    private Time timeDay;
+    private Time TimeMonth;
 
+    public Time getTimeDay() {
+        return timeDay;
+    }
+
+    public void setTimeDay(Time timeDay) {
+        this.timeDay = timeDay;
+    }
+
+    public Time getTimeMonth() {
+        return TimeMonth;
+    }
+
+    public void setTimeMonth(Time timeMonth) {
+        TimeMonth = timeMonth;
+    }
 
     public int getId() {
         return id;
@@ -51,11 +67,5 @@ public class BancoHoras implements Serializable {
         this.date = date;
     }
 
-    public int getIdEmployee() {
-        return idEmployee;
-    }
-
-    public void setIdEmployee(int idEmployee) {
-        this.idEmployee = idEmployee;
-    }
+   
 }
