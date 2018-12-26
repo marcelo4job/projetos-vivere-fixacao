@@ -3,6 +3,7 @@ package com.marcelo.cursomc.services;
 import com.marcelo.cursomc.domain.Categoria;
 import com.marcelo.cursomc.repositories.CategoriaRepository;
 import com.marcelo.cursomc.services.exception.ObjectNotFoundException;
+import com.marcelo.cursomc.tdo.CategoriaDTO;
 import com.sun.org.apache.xalan.internal.xsltc.dom.SimpleResultTreeImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -57,5 +58,9 @@ public class  CategoriaService {
 
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
         return categoriaRepository.findAll(pageRequest);
+    }
+
+    public Categoria fromDTO(CategoriaDTO objeto){
+        return new Categoria(objeto.getId(), objeto.getNome());
     }
 }
