@@ -1,6 +1,7 @@
 package com.marcelo.cursomc.services;
 
 import com.marcelo.cursomc.domain.Categoria;
+import com.marcelo.cursomc.domain.Cliente;
 import com.marcelo.cursomc.repositories.CategoriaRepository;
 import com.marcelo.cursomc.services.exception.ObjectNotFoundException;
 import com.marcelo.cursomc.dto.CategoriaDTO;
@@ -32,8 +33,9 @@ public class  CategoriaService {
     }
 
     public Categoria update(Categoria obj){
-        find(obj.getId());
-        return categoriaRepository.save(obj);
+        Categoria newObj = find(obj.getId());
+        updateData(newObj, obj);
+        return categoriaRepository.save(newObj);
     }
 
     public void delete(Integer id) {
@@ -62,4 +64,10 @@ public Page<Categoria> findPage(Integer page, Integer linesPerPage, String order
 public Categoria fromDTO(CategoriaDTO objeto){
         return new Categoria(objeto.getId(), objeto.getNome());
         }
+
+    private void updateData(Categoria newObj, Categoria obj){
+        newObj.setNome(obj.getNome() );
+
+    }
+
         }
