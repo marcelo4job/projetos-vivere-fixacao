@@ -1,4 +1,4 @@
-package com.marcelo.cursomc.tdo;
+package com.marcelo.cursomc.dto;
 import com.marcelo.cursomc.domain.Categoria;
 import org.hibernate.validator.constraints.Length;
 
