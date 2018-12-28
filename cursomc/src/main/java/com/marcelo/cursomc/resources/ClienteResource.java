@@ -1,6 +1,7 @@
 package com.marcelo.cursomc.resources;
 
 import com.marcelo.cursomc.domain.Cliente;
+import com.marcelo.cursomc.dto.ClienteNewDTO;
 import com.marcelo.cursomc.services.ClienteService;
 import com.marcelo.cursomc.dto.ClienteDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,10 @@ public class ClienteResource {
         return ResponseEntity.ok().body(obj);
     }
 
+
+
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> insert(@Valid @RequestBody ClienteDTO objDto) {
+    public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDto) {
         Cliente obj = service.fromDTO(objDto);
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
