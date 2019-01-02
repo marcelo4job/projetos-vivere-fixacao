@@ -1,7 +1,6 @@
 package com.marcelo.cursomc.services;
 
 
-import com.marcelo.cursomc.domain.Categoria;
 import com.marcelo.cursomc.domain.Cidade;
 import com.marcelo.cursomc.domain.Cliente;
 import com.marcelo.cursomc.domain.Endereco;
@@ -11,12 +10,14 @@ import com.marcelo.cursomc.dto.ClienteNewDTO;
 import com.marcelo.cursomc.repositories.ClienteRepository;
 import com.marcelo.cursomc.repositories.EnderecoRepository;
 import com.marcelo.cursomc.services.exception.ObjectNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +36,7 @@ public class ClienteService {
                 "O objeto não encontrado! Id: " + id + ", Tipo:" + Cliente.class.getName()));
     }
 
+    @Transactional
     public Cliente insert(Cliente obj){
         obj.setId(null);
         obj =  clienteRepository.save(obj);
@@ -56,7 +58,7 @@ public class ClienteService {
         }
         catch (DataIntegrityViolationException e){
 
-            throw new DataIntegrityViolationException("Não é possivel excluir uma clientes porque há entidades realcionadas");
+            throw new DataIntegrityViolationException("Não é possivel excluir uma clientes porque há pedidos realcionadas como esse cliente");
 
         }
     }
@@ -84,7 +86,7 @@ public class ClienteService {
         cli.getEnderecos().add(end);
         cli.getTelefones().add(objDto.getTelefone1());
         if(objDto.getTelefone2()!=null){
-            cli.getTelefones().add(objDto.getTelefone1());
+            cli.getTelefones().add(objDto.getTelefone2());
         }
         if(objDto.getTelefone3()!=null){
             cli.getTelefones().add(objDto.getTelefone3());
