@@ -1,5 +1,6 @@
 package com.marcelo.controle.dto;
 
+import com.marcelo.controle.domain.Funcionario;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotEmpty;
@@ -18,6 +19,17 @@ public class FuncionarioDTO implements Serializable {
     public FuncionarioDTO(){
 
     }
+
+    public FuncionarioDTO(Funcionario obj){
+
+        matricula = obj.getMatricula();
+        nome = obj.getNome();
+        setor = obj.getSetor();
+        cargo = obj.getCargo();
+    }
+
+
+
 
     public Integer getMatricula() {
         return matricula;

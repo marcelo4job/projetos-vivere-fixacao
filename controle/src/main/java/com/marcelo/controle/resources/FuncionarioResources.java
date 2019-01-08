@@ -10,6 +10,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/funcionarios")
@@ -45,6 +47,14 @@ public class FuncionarioResources {
     public ResponseEntity<Void> delete(@PathVariable Integer id){
         funcionarioService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<FuncionarioDTO>> findAll(){
+        List<Funcionario> list = funcionarioService.findAll();
+        List<FuncionarioDTO> listDto = list.stream().map(obj -> new FuncionarioDTO(obj)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDto);
+
     }
 
 }

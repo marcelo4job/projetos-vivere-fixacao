@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -51,6 +52,10 @@ public class FuncionarioService {
         }catch(DataIntegrityViolationException e){
             throw new DataIntegrityViolationException("Não é possivel excluir um fucionario com registro no banco de horas");
         }
+
     }
 
+    public List<Funcionario> findAll(){
+        return funcionarioRepository.findAll();
+    }
 }
