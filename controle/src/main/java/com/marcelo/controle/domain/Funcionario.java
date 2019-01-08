@@ -12,7 +12,7 @@ public class Funcionario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name ="id_funcionario")
+   //@Column(name ="id_funcionario")
     private Integer matricula;
     private String nome;
     private String setor;

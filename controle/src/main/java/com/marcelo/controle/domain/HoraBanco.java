@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
@@ -14,8 +15,10 @@ public class HoraBanco implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private LocalTime hora;
     private String dia;
+    private LocalTime hora;
+
+    private LocalDate date;
 
     @JsonIgnore
     @ManyToOne
@@ -27,12 +30,24 @@ public class HoraBanco implements Serializable {
 
     }
 
-    public HoraBanco(LocalTime hora, String dia) {
-        this.hora = hora;
+    public HoraBanco(Integer id,String dia, LocalTime hora,  LocalDate date, Funcionario funcionario) {
+        this.id = id;
         this.dia = dia;
+        this.hora = hora;
+        this.date = date;
+        this.funcionario = funcionario;
     }
 
     //Get&Set's
+
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 
     public Integer getId() {
         return id;

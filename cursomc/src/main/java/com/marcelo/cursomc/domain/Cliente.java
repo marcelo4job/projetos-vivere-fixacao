@@ -1,8 +1,6 @@
 package com.marcelo.cursomc.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.marcelo.cursomc.domain.enums.TipoCliente;
 
 import javax.persistence.*;
@@ -22,6 +20,7 @@ public class Cliente implements Serializable {
     @Column(unique = true )
     private String email;
 
+    
     private String cpfOuCnpj;
     private Integer tipo;
 
