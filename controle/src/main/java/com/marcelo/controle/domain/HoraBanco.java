@@ -41,6 +41,14 @@ public class HoraBanco implements Serializable {
     //Get&Set's
 
 
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+
     public LocalDate getDate() {
         return date;
     }
