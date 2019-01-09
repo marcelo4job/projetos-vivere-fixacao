@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Month;
 import java.util.Objects;
 
 @Entity
@@ -15,12 +16,15 @@ public class HoraBanco implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String dia;
+    private LocalDate dia = LocalDate.now();
     private LocalTime hora;
+    private LocalDate date = LocalDate.now();
 
-    private LocalDate date;
 
-    @JsonIgnore
+
+
+
+
     @ManyToOne
     @JoinColumn(name = "funcionario_id ")
     private  Funcionario funcionario;
@@ -30,12 +34,14 @@ public class HoraBanco implements Serializable {
 
     }
 
-    public HoraBanco(Integer id,String dia, LocalTime hora,  LocalDate date, Funcionario funcionario) {
+    public HoraBanco(Integer id,LocalDate dia, LocalTime hora,  LocalDate date, Funcionario funcionario) {
         this.id = id;
         this.dia = dia;
         this.hora = hora;
         this.date = date;
         this.funcionario = funcionario;
+
+
     }
 
     //Get&Set's
@@ -73,11 +79,11 @@ public class HoraBanco implements Serializable {
         this.hora = hora;
     }
 
-    public String getDia() {
+    public LocalDate getDia() {
         return dia;
     }
 
-    public void setDia(String dia) {
+    public void setDia(LocalDate dia) {
         this.dia = dia;
     }
 

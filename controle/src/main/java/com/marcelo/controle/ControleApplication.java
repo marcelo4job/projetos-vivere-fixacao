@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Month;
 import java.util.Arrays;
 
 import static java.util.Arrays.asList;
@@ -23,10 +24,8 @@ public class ControleApplication implements CommandLineRunner {
 	}
 
 
-	LocalTime time = LocalTime.of(9,2,15);
+	LocalTime time = LocalTime.now();
 	LocalDate date = LocalDate.now();
-
-
 
 	@Autowired
 	private FuncionarioRepository funcionarioRepository;
@@ -37,15 +36,18 @@ public class ControleApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		Funcionario funcionario1 = new Funcionario(null, "Marcos Alberto", "Marketing", "Analista de Marketing");
+		Funcionario funcionario2 = new Funcionario(null, "Mikael Anderson", "Comercial", "Analista Finenceiro");
 
-		HoraBanco reg1 = new HoraBanco(null, "Terça", time, date, funcionario1);
+		HoraBanco reg1 = new HoraBanco(null, date, time, date, funcionario1);
+		HoraBanco reg2 = new HoraBanco(null, date, time, date, funcionario1);
 
 		funcionario1.getRegistro().addAll(Arrays.asList(reg1));
+		funcionario2.getRegistro().addAll(Arrays.asList(reg2));
 
 
 
-		funcionarioRepository.saveAll(asList(funcionario1));
-		horaBancoRepository.saveAll(asList(reg1));
+		funcionarioRepository.saveAll(asList(funcionario1, funcionario2));
+		horaBancoRepository.saveAll(asList(reg1, reg2));
 
 
 
