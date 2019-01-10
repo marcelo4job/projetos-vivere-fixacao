@@ -22,7 +22,7 @@ public class HoraBancoDTO  implements Serializable {
 
     public HoraBancoDTO(HoraBanco obj){
 
-        dia = obj.getDia();
+       // dia = obj.getDia();
         hora = obj.getHora();
         date = obj.getDate();
         funcionario = obj.getFuncionario();

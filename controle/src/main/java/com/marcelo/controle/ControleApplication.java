@@ -1,5 +1,6 @@
 package com.marcelo.controle;
 
+import com.marcelo.controle.domain.enums.DiasSemana;
 import com.marcelo.controle.domain.Funcionario;
 import com.marcelo.controle.domain.HoraBanco;
 import com.marcelo.controle.repository.FuncionarioRepository;
@@ -11,7 +12,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.Month;
 import java.util.Arrays;
 
 import static java.util.Arrays.asList;
@@ -27,6 +27,14 @@ public class ControleApplication implements CommandLineRunner {
 	LocalTime time = LocalTime.now();
 	LocalDate date = LocalDate.now();
 
+	public void setTime(LocalTime time) {
+		this.time = time;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
 	@Autowired
 	private FuncionarioRepository funcionarioRepository;
 	@Autowired
@@ -38,8 +46,8 @@ public class ControleApplication implements CommandLineRunner {
 		Funcionario funcionario1 = new Funcionario(null, "Marcos Alberto", "Marketing", "Analista de Marketing");
 		Funcionario funcionario2 = new Funcionario(null, "Mikael Anderson", "Comercial", "Analista Finenceiro");
 
-		HoraBanco reg1 = new HoraBanco(null, date, time, date, funcionario1);
-		HoraBanco reg2 = new HoraBanco(null, date, time, date, funcionario1);
+		HoraBanco reg1 = new HoraBanco(null, this.date.getDayOfWeek(), time, date, funcionario1);
+		HoraBanco reg2 = new HoraBanco(null, this.date.getDayOfWeek(), time, date, funcionario2);
 
 		funcionario1.getRegistro().addAll(Arrays.asList(reg1));
 		funcionario2.getRegistro().addAll(Arrays.asList(reg2));

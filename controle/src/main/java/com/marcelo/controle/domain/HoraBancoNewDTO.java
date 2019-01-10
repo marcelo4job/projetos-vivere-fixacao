@@ -17,7 +17,7 @@ public class HoraBancoNewDTO implements Serializable {
     private String setor;
     private String cargo;
 
-    HoraBancoNewDTO(){
+    public HoraBancoNewDTO() {
     }
 
     public Integer getId() {

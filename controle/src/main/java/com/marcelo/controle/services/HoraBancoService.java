@@ -32,7 +32,7 @@ public class HoraBancoService {
     }
 
     public HoraBanco fromDTO(HoraBancoDTO objDto) {
-        return new HoraBanco(objDto.getId(),objDto.getDia(),objDto.getHora(),objDto.getDate(),objDto.getFuncionario());
+        return new HoraBanco(objDto.getId(),null,objDto.getHora(),objDto.getDate(),objDto.getFuncionario());
     }
 
     public HoraBanco update(HoraBanco obj) {

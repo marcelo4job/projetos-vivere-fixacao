@@ -1,12 +1,13 @@
 package com.marcelo.controle.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.marcelo.controle.domain.enums.DiasSemana;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.Month;
 import java.util.Objects;
 
 @Entity
@@ -15,16 +16,16 @@ public class HoraBanco implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id")
     private Integer id;
-    private LocalDate dia = LocalDate.now();
+    @Column(name = "Dia")
+    private DayOfWeek dia;
+    @Column(name = "Hora")
     private LocalTime hora;
+    @Column(name = "Data")
     private LocalDate date = LocalDate.now();
 
-
-
-
-
-
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "funcionario_id ")
     private  Funcionario funcionario;
@@ -34,9 +35,9 @@ public class HoraBanco implements Serializable {
 
     }
 
-    public HoraBanco(Integer id,LocalDate dia, LocalTime hora,  LocalDate date, Funcionario funcionario) {
+    public HoraBanco(Integer id, DayOfWeek dia, LocalTime hora, LocalDate date, Funcionario funcionario) {
         this.id = id;
-        this.dia = dia;
+        this.dia =  dia;
         this.hora = hora;
         this.date = date;
         this.funcionario = funcionario;
@@ -79,11 +80,11 @@ public class HoraBanco implements Serializable {
         this.hora = hora;
     }
 
-    public LocalDate getDia() {
+    public DayOfWeek getDia() {
         return dia;
     }
 
-    public void setDia(LocalDate dia) {
+    public void setDia(DayOfWeek dia) {
         this.dia = dia;
     }
 
