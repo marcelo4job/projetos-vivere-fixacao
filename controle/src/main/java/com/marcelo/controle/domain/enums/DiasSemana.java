@@ -10,16 +10,16 @@ public enum DiasSemana {
     SEXTA(6, "Sexta-feira"),
     SABADO(7, "Sábado");
 
-    private int cod;
+    private Integer cod;
     private String descricao;
 
-    private DiasSemana(int cod, String descricao){
+    private DiasSemana(Integer cod, String descricao){
 
         this.cod = cod;
         this.descricao = descricao;
     }
 
-    public int getCod() {
+    public Integer getCod() {
         return cod;
     }
 

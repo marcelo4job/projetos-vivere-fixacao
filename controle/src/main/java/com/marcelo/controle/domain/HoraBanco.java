@@ -5,7 +5,6 @@ import com.marcelo.controle.domain.enums.DiasSemana;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
@@ -18,10 +17,13 @@ public class HoraBanco implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
     private Integer id;
+
     @Column(name = "Dia")
-    private DayOfWeek dia;
+    private Integer dia;
+
     @Column(name = "Hora")
     private LocalTime hora;
+
     @Column(name = "Data")
     private LocalDate date = LocalDate.now();
 
@@ -31,13 +33,17 @@ public class HoraBanco implements Serializable {
     private  Funcionario funcionario;
 
     //Construtores
-    public HoraBanco(){
+
+    public  HoraBanco(){
+
+        }
+    public HoraBanco(Integer id, DiasSemana dia, LocalTime hora, LocalDate date, Integer funcionarioMat){
 
     }
 
-    public HoraBanco(Integer id, DayOfWeek dia, LocalTime hora, LocalDate date, Funcionario funcionario) {
+    public HoraBanco(Integer id, DiasSemana dia, LocalTime hora, LocalDate date, Funcionario funcionario) {
         this.id = id;
-        this.dia =  dia;
+        this.dia = (dia == null) ? null : dia.getCod();
         this.hora = hora;
         this.date = date;
         this.funcionario = funcionario;
@@ -80,12 +86,12 @@ public class HoraBanco implements Serializable {
         this.hora = hora;
     }
 
-    public DayOfWeek getDia() {
-        return dia;
+    public DiasSemana getDia() {
+        return DiasSemana.toEnum(dia);
     }
 
-    public void setDia(DayOfWeek dia) {
-        this.dia = dia;
+    public void setDia(DiasSemana dia) {
+        this.dia = dia.getCod();
     }
 
     @Override

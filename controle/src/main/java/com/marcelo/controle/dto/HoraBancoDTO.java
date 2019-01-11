@@ -11,7 +11,6 @@ public class HoraBancoDTO  implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
-    private LocalDate dia;
     private LocalTime hora;
     private LocalDate date;
     private Funcionario funcionario;
@@ -22,7 +21,7 @@ public class HoraBancoDTO  implements Serializable {
 
     public HoraBancoDTO(HoraBanco obj){
 
-       // dia = obj.getDia();
+        id = obj.getId();
         hora = obj.getHora();
         date = obj.getDate();
         funcionario = obj.getFuncionario();
@@ -34,14 +33,6 @@ public class HoraBancoDTO  implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public LocalDate getDia() {
-        return dia;
-    }
-
-    public void setDia(LocalDate dia) {
-        this.dia = dia;
     }
 
     public LocalTime getHora() {

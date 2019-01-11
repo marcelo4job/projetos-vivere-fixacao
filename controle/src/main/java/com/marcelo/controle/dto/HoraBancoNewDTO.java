@@ -1,4 +1,4 @@
-package com.marcelo.controle.domain;
+package com.marcelo.controle.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -7,12 +7,13 @@ import java.time.LocalTime;
 public class HoraBancoNewDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Integer id;
-    private LocalDate dia = LocalDate.now();
+
+    private Integer dia;
     private LocalTime hora;
     private LocalDate date = LocalDate.now();
 
-    private Integer matricula;
+
+    private Integer funcionarioMat;
     private String nome;
     private String setor;
     private String cargo;
@@ -20,19 +21,13 @@ public class HoraBancoNewDTO implements Serializable {
     public HoraBancoNewDTO() {
     }
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
-    public LocalDate getDia() {
+    public Integer getDia() {
         return dia;
     }
 
-    public void setDia(LocalDate dia) {
+    public void setDia(Integer dia) {
         this.dia = dia;
     }
 
@@ -52,12 +47,13 @@ public class HoraBancoNewDTO implements Serializable {
         this.date = date;
     }
 
-    public Integer getMatricula() {
-        return matricula;
+
+    public Integer getFuncionarioMat() {
+        return funcionarioMat;
     }
 
-    public void setMatricula(Integer matricula) {
-        this.matricula = matricula;
+    public void setFuncionarioMat(Integer funcionarioMat) {
+        this.funcionarioMat = funcionarioMat;
     }
 
     public String getNome() {

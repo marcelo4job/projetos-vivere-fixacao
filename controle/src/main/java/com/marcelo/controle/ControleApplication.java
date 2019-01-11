@@ -46,8 +46,8 @@ public class ControleApplication implements CommandLineRunner {
 		Funcionario funcionario1 = new Funcionario(null, "Marcos Alberto", "Marketing", "Analista de Marketing");
 		Funcionario funcionario2 = new Funcionario(null, "Mikael Anderson", "Comercial", "Analista Finenceiro");
 
-		HoraBanco reg1 = new HoraBanco(null, this.date.getDayOfWeek(), time, date, funcionario1);
-		HoraBanco reg2 = new HoraBanco(null, this.date.getDayOfWeek(), time, date, funcionario2);
+		HoraBanco reg1 = new HoraBanco(null, DiasSemana.QUARTA, time, date, funcionario1);
+		HoraBanco reg2 = new HoraBanco(null, DiasSemana.QUARTA, time, date, funcionario2);
 
 		funcionario1.getRegistro().addAll(Arrays.asList(reg1));
 		funcionario2.getRegistro().addAll(Arrays.asList(reg2));

@@ -2,7 +2,10 @@ package com.marcelo.controle.services;
 
 
 import com.marcelo.controle.domain.Funcionario;
+import com.marcelo.controle.domain.HoraBanco;
+import com.marcelo.controle.domain.enums.DiasSemana;
 import com.marcelo.controle.dto.FuncionarioDTO;
+import com.marcelo.controle.dto.FuncionarioNewDTO;
 import com.marcelo.controle.repository.FuncionarioRepository;
 import com.marcelo.controle.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +34,14 @@ public class FuncionarioService {
 
     public Funcionario fromDTO(FuncionarioDTO objDto) {
         return new Funcionario(objDto.getMatricula(), objDto.getNome(), objDto.getSetor(), objDto.getCargo());
+    }
+
+    public Funcionario fromDTO(FuncionarioNewDTO objDTO){
+        Funcionario funcionario = new Funcionario(null, objDTO.getNome(), objDTO.getSetor(), objDTO.getCargo());
+        HoraBanco reg = new HoraBanco(null, DiasSemana.toEnum(objDTO.getDia()), objDTO.getHora(), objDTO.getDate(),objDTO.getIdRegistro());
+        funcionario.getRegistro().add(reg);
+        return funcionario;
+
     }
 
     public Funcionario update(Funcionario obj) {

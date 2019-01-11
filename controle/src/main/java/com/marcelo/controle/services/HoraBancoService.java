@@ -3,8 +3,11 @@ package com.marcelo.controle.services;
 
 import com.marcelo.controle.domain.Funcionario;
 import com.marcelo.controle.domain.HoraBanco;
+import com.marcelo.controle.domain.enums.DiasSemana;
 import com.marcelo.controle.dto.FuncionarioDTO;
+import com.marcelo.controle.dto.FuncionarioNewDTO;
 import com.marcelo.controle.dto.HoraBancoDTO;
+import com.marcelo.controle.dto.HoraBancoNewDTO;
 import com.marcelo.controle.repository.HoraBancoRepository;
 import com.marcelo.controle.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +34,7 @@ public class HoraBancoService {
         return horaBancoRepository.save(obj);
     }
 
-    public HoraBanco fromDTO(HoraBancoDTO objDto) {
-        return new HoraBanco(objDto.getId(),null,objDto.getHora(),objDto.getDate(),objDto.getFuncionario());
-    }
+
 
     public HoraBanco update(HoraBanco obj) {
         HoraBanco newObj = find(obj.getId());
@@ -61,4 +62,14 @@ public class HoraBancoService {
     public List<HoraBanco> findAll(){
         return horaBancoRepository.findAll();
     }
+
+    public HoraBanco fromDTO(HoraBancoDTO objDto) {
+        //return new HoraBanco(objDto.getId(),null,objDto.getHora(),objDto.getDate(),objDto.getFuncionario());
+
+        throw new UnsupportedOperationException();
+    }
+
+
+
+
 }

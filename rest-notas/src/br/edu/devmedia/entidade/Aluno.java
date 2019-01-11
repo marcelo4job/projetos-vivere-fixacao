@@ -5,7 +5,7 @@ public class Aluno {
 	private int id;
 	private String nome;
 	private String turma;
-	private int id_disciplina;	
+	private int id_disciplina;
 	
 
 	
