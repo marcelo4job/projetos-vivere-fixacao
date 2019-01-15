@@ -1,10 +1,12 @@
 package com.marcelo.controle;
 
+import com.marcelo.controle.domain.Record;
+import com.marcelo.controle.domain.TimeBank;
 import com.marcelo.controle.domain.enums.DiasSemana;
-import com.marcelo.controle.domain.Funcionario;
-import com.marcelo.controle.domain.HoraBanco;
-import com.marcelo.controle.repository.FuncionarioRepository;
-import com.marcelo.controle.repository.HoraBancoRepository;
+import com.marcelo.controle.domain.User;
+import com.marcelo.controle.repository.UserRepository;
+import com.marcelo.controle.repository.RecordRepository;
+import com.marcelo.controle.repository.TimeBankRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -36,30 +38,42 @@ public class ControleApplication implements CommandLineRunner {
 	}
 
 	@Autowired
-	private FuncionarioRepository funcionarioRepository;
+	private UserRepository userRepository;
 	@Autowired
-	private HoraBancoRepository horaBancoRepository;
+	private RecordRepository recordRepository;
+	@Autowired
+    private TimeBankRepository timeBankRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
 
-		Funcionario funcionario1 = new Funcionario(null, "Marcos Alberto", "Marketing", "Analista de Marketing");
-		Funcionario funcionario2 = new Funcionario(null, "Mikael Anderson", "Comercial", "Analista Finenceiro");
+        TimeBank timeReg1 = new TimeBank(null, "Entrada");
+        TimeBank timeReg2 = new TimeBank(null, "Saída Almoço");
 
-		HoraBanco reg1 = new HoraBanco(null, DiasSemana.QUARTA, time, date, funcionario1);
-		HoraBanco reg2 = new HoraBanco(null, DiasSemana.QUARTA, time, date, funcionario2);
+		User user1 = new User(null, "Marcos Alberto", "Marketing", "Analista de Marketing");
+		User user2 = new User(null, "Mikael Anderson", "Comercial", "Analista Finenceiro");
 
-		funcionario1.getRegistro().addAll(Arrays.asList(reg1));
-		funcionario2.getRegistro().addAll(Arrays.asList(reg2));
+		Record reg1 = new Record(null, DiasSemana.QUARTA, time, date, user1, timeReg1);
+        Record reg2 = new Record(null, DiasSemana.QUARTA, time, date, user2, timeReg2);
+
+		user1.getRecords().addAll(Arrays.asList(reg1));
+		user2.getRecords().addAll(Arrays.asList(reg2));
+
+        timeReg1.getTimesBank().addAll(asList(reg1));
+        timeReg2.getTimesBank().addAll(asList(reg2));
+
+		userRepository.saveAll(asList(user1, user2));
+        timeBankRepository.saveAll(asList(timeReg1, timeReg2));
+		recordRepository.saveAll(asList(reg1,reg2));
 
 
 
-		funcionarioRepository.saveAll(asList(funcionario1, funcionario2));
-		horaBancoRepository.saveAll(asList(reg1, reg2));
 
 
 
-	}
+
+
+    }
 
 
 
