@@ -2,7 +2,13 @@ package com.marcelo.controle.services;
 
 
 import com.marcelo.controle.domain.Record;
+//import com.marcelo.controle.domain.User;
+import com.marcelo.controle.domain.User;
+import com.marcelo.controle.domain.enums.DayOfWeekEnum;
+import com.marcelo.controle.domain.enums.StatusEnum;
 import com.marcelo.controle.dto.RecordDTO;
+import com.marcelo.controle.dto.RecordNewDTO;
+import com.marcelo.controle.dto.UserNewDTO;
 import com.marcelo.controle.repository.RecordRepository;
 import com.marcelo.controle.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +47,7 @@ public class RecordService {
         newObj.setDia(obj.getDayOfWeek());
         newObj.setTimes(obj.getTimes());
         newObj.setDate(obj.getDate());
-        newObj.setUser(obj.getUser());
+//        newObj.setUser(obj.getUser());
     }
 
     public void delete(Integer id){
@@ -62,6 +68,17 @@ public class RecordService {
         //return new Record(objDto.getId(),null,objDto.getTimes(),objDto.getDate(),objDto.getUser());
 
         throw new UnsupportedOperationException();
+    }
+
+
+    public Record fromDTO(RecordNewDTO objDTO){
+        Record reg = new Record(null, DayOfWeekEnum.toEnum(objDTO.getDayOfWeek()), objDTO.getTimes(), objDTO.getDate(), StatusEnum.toEnum(objDTO.getStatus()));
+        User user = new User(null, objDTO.getName(), objDTO.getDepartament(), objDTO.getRoles(), objDTO.getRecord);
+//        funcionario.getRecords().add(reg);
+        reg.getUsers().add(user);
+        return reg;
+
+
     }
 
 

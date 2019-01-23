@@ -3,7 +3,8 @@ package com.marcelo.controle.services;
 
 import com.marcelo.controle.domain.Record;
 import com.marcelo.controle.domain.User;
-import com.marcelo.controle.domain.enums.DiasSemana;
+import com.marcelo.controle.domain.enums.DayOfWeekEnum;
+import com.marcelo.controle.domain.enums.StatusEnum;
 import com.marcelo.controle.dto.UserDTO;
 import com.marcelo.controle.dto.UserNewDTO;
 import com.marcelo.controle.repository.UserRepository;
@@ -33,16 +34,16 @@ public class UserService {
     }
 
     public User fromDTO(UserDTO objDto) {
-        return new User(objDto.getId(), objDto.getName(), objDto.getDepartament(), objDto.getRoles());
+        return new User(objDto.getId(), objDto.getName(), objDto.getDepartament(), objDto.getRoles(), objDto.getRecord());
     }
-
-    public User fromDTO(UserNewDTO objDTO){
-        User funcionario = new User(null, objDTO.getName(), objDTO.getDepartament(), objDTO.getRoles());
-        Record reg = new Record(null, DiasSemana.toEnum(objDTO.getDayOfWeek()), objDTO.getTimes(), objDTO.getDate(),objDTO.getRecordId(), objDTO.getIdTimeBank());
-        funcionario.getRecords().add(reg);
-        return funcionario;
-
-    }
+//
+//    public User fromDTO(UserNewDTO objDTO){
+//        User funcionario = new User(null, objDTO.getName(), objDTO.getDepartament(), objDTO.getRoles(), objDTO.getRecord());
+//        Record reg = new Record(null, DayOfWeekEnum.toEnum(objDTO.getDayOfWeek()), objDTO.getTimes(), objDTO.getDate(), StatusEnum.toEnum(objDTO.getSatatus()),objDTO.getRecordId());
+//        funcionario.getRecords().add(reg);
+//        return funcionario;
+//
+//    }
 
     public User update(User obj) {
         User newObj = find(obj.getId());

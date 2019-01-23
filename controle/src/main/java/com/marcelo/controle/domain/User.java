@@ -1,11 +1,7 @@
 package com.marcelo.controle.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -19,27 +15,36 @@ public class User implements Serializable {
     private String departament;
     private String roles;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "user")
-    private List<Record> records = new ArrayList<>();
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "user")
+//    private List<Record> records = new ArrayList<>();
 
-
+    @ManyToOne
+    @JoinColumn(name = "record_id ")
+    private Record record;
 
     //Construtores
-    public User(){
+    public User(Integer matricula, String name, String departament, String roles, Integer getRecord){
 
     }
 
-    public User(Integer matricula, String nome, String setor, String cargo) {
+    public User(Integer matricula, String nome, String setor, String cargo, Record record) {
         this.id = matricula;
         this.name = nome;
         this.departament = setor;
         this.roles = cargo;
+        this.record = record;
     }
     //Gett&Set's
 
 
+    public Record getRecord() {
+        return record;
+    }
 
+    public void setRecord(Record record) {
+        this.record = record;
+    }
 
     public Integer getId() {
         return id;
@@ -72,14 +77,14 @@ public class User implements Serializable {
     public void setRoles(String roles) {
         this.roles = roles;
     }
-
-  public List<Record> getRecords() {
-        return records;
-    }
-
-    public void setRecords(List<Record> records) {
-        this.records = records;
-    }
+//
+//  public List<Record> getUsers() {
+//        return records;
+//    }
+//
+//    public void setUsers(List<Record> records) {
+//        this.records = records;
+//    }
 
     @Override
     public boolean equals(Object o) {

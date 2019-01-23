@@ -1,5 +1,6 @@
 package com.marcelo.controle.dto;
 
+import com.marcelo.controle.domain.Record;
 import com.marcelo.controle.domain.User;
 import org.hibernate.validator.constraints.Length;
 
@@ -15,6 +16,7 @@ public class UserDTO implements Serializable {
     private String name;
     private String departament;
     private String roles;
+    private Record record;
 
     public UserDTO(){
 
@@ -26,10 +28,16 @@ public class UserDTO implements Serializable {
         name = obj.getName();
         departament = obj.getDepartament();
         roles = obj.getRoles();
+        record = obj.getRecord();
     }
 
+    public Record getRecord() {
+        return record;
+    }
 
-
+    public void setRecord(Record record) {
+        this.record = record;
+    }
 
     public Integer getId() {
         return id;

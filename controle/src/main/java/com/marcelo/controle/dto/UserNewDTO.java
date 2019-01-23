@@ -1,5 +1,7 @@
 package com.marcelo.controle.dto;
 
+import com.marcelo.controle.domain.Record;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -8,35 +10,36 @@ public class UserNewDTO {
     private String name;
     private String departament;
     private String roles;
+    private Record record;
 
 
-    private Integer recordId;
+    private Record recordId;
     private Integer dayOfWeek;
     private LocalTime times;
     private LocalDate date = LocalDate.now();
+    private String satatus;
 
-    private Integer idTimeBank;
-    private String status;
+
 
     public UserNewDTO(){
 
     }
 
 
-    public Integer getIdTimeBank() {
-        return idTimeBank;
+    public Record getRecord() {
+        return record;
     }
 
-    public void setIdTimeBank(Integer idTimeBank) {
-        this.idTimeBank = idTimeBank;
+    public void setRecord(Record record) {
+        this.record = record;
     }
 
-    public String getStatus() {
-        return status;
+    public String getSatatus() {
+        return satatus;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setSatatus(String satatus) {
+        this.satatus = satatus;
     }
 
     public String getName() {
@@ -63,11 +66,11 @@ public class UserNewDTO {
         this.roles = roles;
     }
 
-    public Integer getRecordId() {
+    public Record getRecordId() {
         return recordId;
     }
 
-    public void setRecordId(Integer recordId) {
+    public void setRecordId(Record recordId) {
         this.recordId = recordId;
     }
 

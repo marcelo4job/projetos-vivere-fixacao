@@ -1,16 +1,20 @@
 package com.marcelo.controle.dto;
 
+import com.marcelo.controle.domain.Record;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class RecordNewDTO implements Serializable {
     private static final long serialVersionUID = 1L;
+    public Integer getRecord;
 
 
     private Integer dayOfWeek;
     private LocalTime times;
     private LocalDate date = LocalDate.now();
+    private String status;
 
 
     private Integer userId;
@@ -18,20 +22,14 @@ public class RecordNewDTO implements Serializable {
     private String departament;
     private String roles;
 
-    private Integer idTimeBank;
-    private String status;
+
+
 
     public RecordNewDTO() {
     }
 
 
-    public Integer getIdTimeBank() {
-        return idTimeBank;
-    }
 
-    public void setIdTimeBank(Integer idTimeBank) {
-        this.idTimeBank = idTimeBank;
-    }
 
     public String getStatus() {
         return status;

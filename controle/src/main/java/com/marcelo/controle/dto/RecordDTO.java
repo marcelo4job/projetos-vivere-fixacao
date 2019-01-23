@@ -2,7 +2,6 @@ package com.marcelo.controle.dto;
 
 import com.marcelo.controle.domain.Record;
 import com.marcelo.controle.domain.User;
-import com.marcelo.controle.domain.TimeBank;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -12,10 +11,12 @@ public class RecordDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
+    private String dayOfWeek;
     private LocalTime times;
     private LocalDate date;
-    private User user;
-    private TimeBank timeBank;
+    private String status;
+//    private User user;
+
 
 
     public RecordDTO(){
@@ -25,20 +26,23 @@ public class RecordDTO implements Serializable {
     public RecordDTO(Record obj){
 
         id = obj.getId();
+        dayOfWeek = (obj.getDayOfWeek() == null) ? null : obj.getDayOfWeek().getDesc();
         times = obj.getTimes();
         date = obj.getDate();
-        user = obj.getUser();
-        timeBank = obj.getTimeBank();
+        status = obj.getStatus();
+//        user = obj.getUser();
 
     }
 
-    public TimeBank getTimeBank() {
-        return timeBank;
+    public String getDayOfWeek() {
+        return dayOfWeek;
     }
 
-    public void setTimeBank(TimeBank timeBank) {
-        this.timeBank = timeBank;
+    public void setDayOfWeek(String dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
     }
+
+
 
     public Integer getId() {
         return id;
@@ -66,11 +70,19 @@ public class RecordDTO implements Serializable {
         this.date = date;
     }
 
-    public User getUser() {
-        return user;
+    public String getStatus() {
+        return status;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setStatus(String status) {
+        this.status = status;
     }
+
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 }
